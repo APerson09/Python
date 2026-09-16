@@ -1,0 +1,28 @@
+.Title {
+    text-align: center;
+    font-size: 3rem;
+}
+
+.addReminder {
+    text-align: center;
+
+    border-radius: 2px;
+    border-color: solid black;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.AddThings {
+    border-radius: 2px;
+    border-color: solid black;
+    border-width: 1px;
+    width: 200px;
+    height: 20px;
+
+    text-align: center;
+}
