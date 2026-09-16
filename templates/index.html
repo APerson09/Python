@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <h1 class="Title">Reminders</h1>
+    <div class="center">
+        <div class="center">
+            <h2 class="addReminder"> Add Reminder </h2>
+            <form action="/" method="POST">
+                <input type="text" name="reminder_txt" placeholder="Type Something" class="AddThings">
+                <button type="submit" class="AddThings">Add new reminder</button>
+            </form> 
+        </div>
+        <ul>
+            {% for reminder in reminders %}
+                <li>{{ reminder }}</li>
+                <a href="/delete/{{ loop.index0 }}" class="delete-btn">[✓]</a>
+                <a href="/delete/{{ loop.index0 }}" class="delete-btn">[x]</a>
+            {% endfor %}
+        </ul>
+    </div>
+</html>
