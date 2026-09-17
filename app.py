@@ -4,6 +4,8 @@ app = Flask(__name__)
 
 reminders = []
 
+app.secret_key = "sdfhfgkjdshbfgthrtfd111!xgwesdgvd@@@@rtfderg"
+
 @app.route("/", methods=["GET", "POST"])
 def home():
   if request.method == "POST":
