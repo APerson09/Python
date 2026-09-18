@@ -109,3 +109,44 @@ ul {
   background: transparent;
   padding: 4px 10px;
 }
+
+.showImageUploadTab {
+  border:1px solid lightgray;
+  border-radius: 7px;
+  background-color:lightgray;
+  display: block;
+  width: 250px;
+  height: 60%px;
+  position: absolute;
+  width: 100%;
+  transition: height 2s;
+  top: calc(100% + 8px);
+
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  transition: max-height 0.4s ease-out, opacity 0.3s ease-in;
+}
+
+.showImageUploadTab.open {
+  max-height: 100px;
+  opacity: 1;
+}
+
+.showImageUploadTab img {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10px;
+  width: 35px;
+  height: auto;
+}
+
+.wrapInput {
+  position: relative;
+  display: inline-block;
+}
+
+

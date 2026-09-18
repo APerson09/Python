@@ -8,24 +8,52 @@
 </head>
 <body class="{{ 'darkMode' if session.get('darkMode') else '' }}">
     <h1 class="Title">Reminders</h1>
-    <div class="center">
         <div class="center">
-            <h2 class="addReminder"> Add Reminder </h2>
-            <form action="/" method="POST">
-                <input type="text" name="reminder_txt" placeholder="Type Something" class="AddThings">
-                <button type="submit" class="AddButton">Add new reminder</button>
-            </form> 
-        </div>
-        <ul>
-            {% for reminder in reminders %}
-                <li>
-                    <span>{{ reminder }}</span>
-                    <div class="action-buttons">
-                        <a href="/delete/{{ loop.index0 }}" class="action-btn check-btn" style="color:green">Complete</a>
-                        <a href="/delete/{{ loop.index0 }}" class="action-btn delete-btn" style="color:red">Delete</a>
+            <div class="center">
+                <h2 class="addReminder"> Add Reminder </h2>
+                <form action="/" method="POST" enctype="multipart/form-data">
+                    <div class="wrapInput">
+                        <input type="text" name="reminder_txt" placeholder="Type Something" class="AddThings" id="input">
+                        <div class="showImageUploadTab" id="upload">
+                            <label for="fileInput" style="cursor: pointer; display: flex; align-items: center; width: 100%; height: 100%;">
+                                <img src="{{url_for('static', filename='25666.png')}}" alt="imgUpload">
+                            </label>
+                            <input type="file" id="fileInput" name="reminder_image" accept="image/*" style="display: none;">
+                        </div>
                     </div>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+                    <button type="submit" class="AddButton">Add new reminder</button>
+                </form> 
+            </div>
+
+            <ul>
+                {% for reminder in reminders %}
+                    <li>
+                        <span>{{ reminder.text }}</span>
+                        {% if reminder.image %}
+                            <br>
+                            <img src="{{ url_for('static', filename=reminder.image) }}" alt="Reminder Image" width="100" style="margin-top: 5px; border-radius: 5px;">
+                        {% endif %}
+                        <div class="action-buttons">
+                            <a href="/delete/{{ loop.index0 }}" class="action-btn check-btn" style="color:green">Complete</a>
+                            <a href="/delete/{{ loop.index0 }}" class="action-btn delete-btn" style="color:red">Delete</a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <script>
+            const upload = document.getElementById("upload");
+            const inputText = document.getElementById("input");
+
+            inputText.addEventListener("focus",function() {
+                upload.classList.add("open");
+            });
+
+            document.addEventListener("click",function(event){
+                if (!inputText.contains(event.target) && !upload.contains(event.target)) {
+                    upload.classList.remove("open");
+                }
+            });
+        </script>
+    </body>
 </html>
