@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -8,8 +8,21 @@ reminders = []
 
 app.secret_key = "sdfhfgkjdshbfgthrtfd111!xgwesdgvd@@@@rtfderg"
 
+@app.route("/toggle-theme")
+def toggleTheme():
+   currTheme = session.get('theme','light');
+
+   if currTheme == 'light':
+      session['theme'] = 'dark'
+   else:
+      session['theme'] = 'light'
+
+   return redirect(request.referrer or url_for('index'))
+
 @app.route("/", methods=["GET", "POST"])
 def uploadImage():
+  theme = session.get('theme', 'light')
+  
   if request.method == "POST":
     reminder_txt = request.form.get("reminder_txt")
     filename = None
@@ -27,7 +40,8 @@ def uploadImage():
         })
       print("Tung tung tung sahur")
       return redirect(url_for('uploadImage'))
-  return render_template('index.html', reminders=reminders)
+
+  return render_template('index.html', reminders=reminders, theme=theme)
 
 @app.route("/delete/<int:index>")
 def deleteIndex(index):

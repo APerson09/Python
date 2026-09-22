@@ -6,8 +6,17 @@
     <title>To Do List</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
 </head>
-<body class="{{ 'darkMode' if session.get('darkMode') else '' }}">
+<body class="{%if theme == 'dark'%} dark-mode{%endif%}">
     <h1 class="Title">Reminders</h1>
+        <form action="/toggle-theme" method="GET">
+            <button id="theme">
+                {%if theme == 'light'%}
+                    <img src="{{url_for('static', filename='dark-mode-fill-yl6k4gxj9xfo8qxbbeiw9j.webp')}}" alt="themeSwitch">
+                {% else %}
+                    <img src="{{url_for('static', filename='light-mode-5rvf29w00r9rx1r6wvs6ro.webp')}}" alt="themeSwitch">
+                {% endif %}
+            </button>
+        </form>
         <div class="center">
             <div class="center">
                 <h2 class="addReminder"> Add Reminder </h2>
