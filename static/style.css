@@ -2,6 +2,27 @@ body, input, button {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
+#theme {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0px;
+  border: 1px solid gray;
+  background: transparent;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#theme:hover {
+  background-color: rgb(165, 165, 165);
+}
+
+#theme img {
+  width: 40px;
+  height: auto;
+}
+
 form {
     display: flex;
     align-items: center;
@@ -149,4 +170,29 @@ ul {
   display: inline-block;
 }
 
+body {
+    background-color: #ffffff;
+    color: #000000;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
 
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode .AddThings {
+    background-color: #2b2b2b;
+    color: #ffffff;
+    border-color: #555;
+}
+
+body.dark-mode li {
+    background-color: #1e1e1e;
+    color: #ffffff;            
+    border: 1px solid #333;   
+}
+
+body.dark-mode #theme {
+    filter: invert(100%);
+}
